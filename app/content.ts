@@ -2,6 +2,7 @@ export const business = {
   name: "Travokeys Auto Locksmith",
   phone: "+27737024949",
   displayPhone: "073 702 4949",
+  email: "info@travokeys.co.za",
   address: "Silver Pines Estate, 29 North Rd, Crystal Park, Benoni, 1501",
   hours: "Open 24 hours",
 };
