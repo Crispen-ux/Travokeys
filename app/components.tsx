@@ -1,7 +1,8 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
-import { KeyRound, ArrowRight } from "lucide-react";
+import { KeyRound, ArrowRight, Phone } from "lucide-react";
 import { business, services } from "./content";
+import MobileMenu from "./mobile-menu";
 
 const whatsappNumber = business.phone.replace("+", "");
 const whatsappMessage = encodeURIComponent("Hi Travokeys, I need help with my vehicle. Please let me know what details you need.");
@@ -17,7 +18,36 @@ export function WhatsAppLink({ children = "WhatsApp us", className = "" }: { chi
 
 export function WhatsAppFloat(){return <a href={whatsappHref} target="_blank" rel="noopener noreferrer" aria-label="Chat with Travokeys on WhatsApp" className="fixed bottom-5 right-5 z-40 flex items-center gap-2 rounded-full bg-[#20b85a] px-5 py-4 text-xs font-bold text-white shadow-[0_8px_28px_rgba(0,0,0,.22)] transition hover:bg-[#159447]"><WhatsAppMark className="h-5 w-5"/><span className="hidden sm:inline">WhatsApp us</span></a>}
 
-export function Header(){return <><div className="bg-[#131a18] text-white"><div className="container flex min-h-9 items-center justify-between text-[11px]"><span className="text-white/75">Automotive locksmith · Benoni</span><div className="flex items-center gap-4"><a href={whatsappHref} target="_blank" rel="noopener noreferrer" className="hidden items-center gap-1.5 text-white/80 sm:flex"><WhatsAppMark/> WhatsApp us</a><a href={`tel:${business.phone}`} className="text-[#d5fa53]">24-hour assistance · {business.displayPhone}</a></div></div></div><header className="sticky top-0 z-30 border-b border-[#e8ebe5] bg-[#f7f8f5]/95 backdrop-blur"><div className="container flex h-[76px] items-center justify-between"><Link href="/" className="flex items-center gap-2.5"><span className="grid h-9 w-9 place-items-center rounded-xl bg-[#d5fa53] text-[#121a17]"><KeyRound size={19}/></span><span className="text-[20px] font-bold tracking-[-.06em]">travo<span className="font-normal">keys</span><span className="ml-1 text-[10px] tracking-[.16em] text-[#7b847e]">.CO.ZA</span></span></Link><nav className="hidden items-center gap-6 text-[12px] font-medium text-[#555e58] md:flex"><Link href="/#services">Services</Link><Link href="/resources">Resources</Link><Link href="/tools">Tools</Link><Link href="/#about">About</Link></nav><a href={`tel:${business.phone}`} className="rounded-full bg-[#141c19] px-5 py-3 text-[12px] font-semibold text-white">Call {business.displayPhone}</a></div></header></>}
+export function Header() {
+  return <>
+    <div className="bg-[#131a18] text-white">
+      <div className="container flex min-h-9 items-center justify-between text-[11px]">
+        <span className="hidden text-white/75 sm:inline">Automotive locksmith · Benoni</span>
+        <div className="ml-auto flex items-center gap-4">
+          <a href={whatsappHref} target="_blank" rel="noopener noreferrer" className="hidden items-center gap-1.5 text-white/80 sm:flex"><WhatsAppMark /> WhatsApp us</a>
+          <a href={`tel:${business.phone}`} className="text-[#d5fa53]"><span className="hidden sm:inline">24-hour assistance · </span>{business.displayPhone}</a>
+        </div>
+      </div>
+    </div>
+    <header className="sticky top-0 z-30 border-b border-[#e8ebe5] bg-[#f7f8f5]/95 backdrop-blur">
+      <div className="container relative flex h-[76px] items-center justify-between">
+        <Link href="/" className="flex items-center gap-2.5">
+          <span className="grid h-9 w-9 place-items-center rounded-xl bg-[#d5fa53] text-[#121a17]"><KeyRound size={19} /></span>
+          <span className="text-[20px] font-bold tracking-[-.06em]">travo<span className="font-normal">keys</span><span className="ml-1 text-[10px] tracking-[.16em] text-[#7b847e]">.CO.ZA</span></span>
+        </Link>
+        <nav className="hidden items-center gap-6 text-[12px] font-medium text-[#555e58] md:flex" aria-label="Main navigation">
+          <Link href="/#services">Services</Link><Link href="/resources">Resources</Link><Link href="/tools">Tools</Link><Link href="/#about">About</Link>
+        </nav>
+        <div className="flex items-center gap-2">
+          <a href={`tel:${business.phone}`} aria-label={`Call Travokeys at ${business.displayPhone}`} className="flex h-10 w-10 items-center justify-center rounded-full bg-[#141c19] text-[12px] font-semibold text-white sm:h-auto sm:w-auto sm:px-5 sm:py-3">
+            <Phone className="h-4 w-4 sm:hidden" /><span className="hidden sm:inline">Call {business.displayPhone}</span>
+          </a>
+          <MobileMenu />
+        </div>
+      </div>
+    </header>
+  </>;
+}
 
 export function Footer(){return <footer className="bg-[#111816] py-12 text-white"><div className="container"><div className="grid gap-8 border-b border-white/10 pb-8 md:grid-cols-3"><div><Link href="/" className="text-xl font-bold tracking-tight">travokeys</Link><p className="mt-3 max-w-xs text-xs leading-5 text-white/50">Automotive locksmith services in Benoni. Open 24 hours.</p></div><div><p className="mb-3 text-xs font-semibold">Explore</p><div className="grid gap-2 text-xs text-white/60"><Link href="/resources">Resource hub</Link><Link href="/tools">Car key tools</Link>{services.map(s=><Link key={s.slug} href={`/services/${s.slug}`}>{s.short}</Link>)}</div></div><div className="text-xs leading-6 text-white/60"><p className="font-semibold text-white">Travokeys Auto Locksmith</p><p>{business.address}</p><a className="text-[#d5fa53]" href={`tel:${business.phone}`}>{business.displayPhone}</a><a className="mt-1 flex items-center gap-2 text-[#43d377]" href={whatsappHref} target="_blank" rel="noopener noreferrer"><WhatsAppMark/> WhatsApp us</a></div></div><div className="flex flex-col justify-between gap-3 pt-6 text-[10px] text-white/40 sm:flex-row"><span>© {new Date().getFullYear()} Travokeys. All rights reserved.</span><span><Link href="/terms">Terms</Link> · <Link href="/privacy">Privacy & POPIA</Link></span></div></div></footer>}
 
