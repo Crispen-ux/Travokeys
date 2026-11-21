@@ -10,7 +10,8 @@ const links = [
   ["Services", "/#services"],
   ["Resources", "/resources"],
   ["Tools", "/tools"],
-  ["About Travokeys", "/#about"],
+  ["About Travokeys", "/about"],
+  ["Contact", "/contact"],
   ["FAQs", "/#faq"],
 ];
 

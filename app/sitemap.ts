@@ -5,6 +5,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const root = "https://travokeys.co.za";
   return [
     { url: root, changeFrequency: "monthly", priority: 1 },
+    { url: `${root}/about`, changeFrequency: "monthly", priority: 0.6 },
+    { url: `${root}/contact`, changeFrequency: "monthly", priority: 0.7 },
     ...services.map((service) => ({ url: `${root}/services/${service.slug}`, changeFrequency: "monthly" as const, priority: 0.8 })),
     { url: `${root}/resources`, changeFrequency: "monthly", priority: 0.8 },
     ...resources.map((article) => ({ url: `${root}/resources/${article.slug}`, changeFrequency: "monthly" as const, priority: 0.7 })),
